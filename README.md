@@ -1,13 +1,15 @@
 # Automatic backup nodes on Virtuozzo Hybrid Infrastructure (shell-command)
 
-Command to be executed on **usernodes**
-- Run commands
+## How to do (execute just on VHI user nodes)
 
-- Download file
-``` $ wget https://raw.githubusercontent.com/yohrannes/vhi-backup-nodes/main/backup-manager.sh; bash backup-manager.sh ```
+- **Download file**
 
-- Show last seven snapshots
+``` $ wget https://raw.githubusercontent.com/yohrannes/vhi-backup-nodes/main/backup-manager.sh ```
+
+- **Show last seven snapshots**
+
   ``` $ bash backup-manager.sh <CTID> ```
 
-- Restore snapshots
+- **Restore snapshots**
+
   ``` $ bash backup-manager.sh <CTID> <BACKUPID [0 - 6]> ```

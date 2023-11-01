@@ -1,6 +1,6 @@
 # Automatic backup nodes on Virtuozzo Hybrid Infrastructure (shell-command)
 
-## How to do (execute just on VHI user nodes)
+## Guide (execute just on VHI user nodes)
 
 - **Download file**
 

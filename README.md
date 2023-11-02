@@ -14,6 +14,6 @@
 
   ```bash backup-manager.sh <CTID> <BACKUPID [0 - 6]>```
 
-#### **Restore last container snapshot (example):**
+####  **Restore last container snapshot (example):**
 
       bash backup-manager.sh 12345 6

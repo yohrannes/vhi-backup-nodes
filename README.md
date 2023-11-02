@@ -1,4 +1,4 @@
-# Automatic backup nodes on Virtuozzo Hybrid Infrastructure (shell-command)
+# Easily restore backup nodes on Virtuozzo Hybrid Infrastructure (shell-command)
 
 ## Guide (execute just on VHI user nodes)
 

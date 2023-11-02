@@ -7,7 +7,7 @@
 wget https://raw.githubusercontent.com/yohrannes/vhi-backup-nodes/main/backup-manager.sh
 ```
 ### **Informar últimas sete snapshots**
-- Confira seu containerid(**ctid** não nodeid) e execute o comando
+- Confira o id do container (**ctid** não nodeid) e execute o comando
 ```
 bash backup-manager.sh <CTID>
 ```

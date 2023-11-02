@@ -8,7 +8,7 @@ https://www.virtuozzo.com/application-platform-ops-docs/
 
 ### **Faça download do script.sh**
 ```
-wget https://raw.githubusercontent.com/yohrannes/vhi-backup-nodes/main/backup-manager.sh
+wget https://raw.githubusercontent.com/yohrannes/vhi-backup-nodes/main-pt/backup-manager.sh
 ```
 ### **Informar últimas sete snapshots**
 - Confira o id do container (**ctid** não nodeid) e execute o comando

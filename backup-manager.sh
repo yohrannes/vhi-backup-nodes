@@ -5,10 +5,10 @@ checkbackups(){
     uuid=$( (prlctl list -a || vzlist -a) | grep "$ctid" | tail -n 1 | grep -o '{[^}]*}' );
     if [[ "$uuid" == "" ]]; then echo -e '\e[91mSnapshot não encontrado\e[0m'; sleep 4; exit 0; fi;
     
-    backups=($(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $2}'));
-    datas=($(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $4}'));
-    horas=($(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $5}'));
-    
+    IFS=" " read -r -a backups <<< "$(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $2}')";
+    IFS=" " read -r -a datas <<< "$(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $4}')";
+    IFS=" " read -r -a horas <<< "$(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $5}')";
+
     echo -e '\nBackups disponiveis para CTID: \e[32m'"$ctid"'\e[0m UUID: \e[32m'"$uuid"'\e[0m\n';
 
     for ((i=0; i<=6; i++)); do if [[ ! "${datas[$i]}" == */* ]]; then datas[i]=""; horas[i]=""; fi; done;
@@ -20,8 +20,6 @@ checkbackups(){
                 data_brasil[i]=$(date -d "${datas[$i]} 1 day ago" +"%d/%m/%Y");
             fi;
         echo -e '\e[32m'$i - "${data_brasil[$i]}" "${hora_ajustada[$i]}"'\e[0m';
-        else
-            data_brasil[i]="";
         fi;
     done;
     echo;

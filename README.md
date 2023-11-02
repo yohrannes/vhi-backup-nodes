@@ -4,16 +4,16 @@
 
 ### **Download file**
 
-  ```wget https://raw.githubusercontent.com/yohrannes/vhi-backup-nodes/main/backup-manager.sh```
+    wget https://raw.githubusercontent.com/yohrannes/vhi-backup-nodes/main/backup-manager.sh
 
 ### **Show last seven snapshots**
 
-  ```bash backup-manager.sh <CTID>```
+    bash backup-manager.sh <CTID>
 
 ### **Restore snapshots**
 
-  ```bash backup-manager.sh <CTID> <BACKUPID [0 - 6]>```
+    bash backup-manager.sh <CTID> <BACKUPID [0 - 6]>
 
-####  **Restore last container snapshot (example):**
+####   **Restore last container snapshot (example):**
 
-      bash backup-manager.sh 12345 6
+    bash backup-manager.sh 12345 6

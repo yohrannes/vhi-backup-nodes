@@ -4,7 +4,7 @@ checkbackups(){
     uuid=$( (prlctl list -a || vzlist -a) | grep "$ctid" | tail -n 1 | grep -o '{[^}]*}' );
 
     if [[ "$uuid" == "" ]]; then echo -e '\e[91m\nSnapshot not found\n\e[0m'; sleep 4; exit 0; fi;
-    
+
     backups=($(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $2}'));
     datas=($(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $4}'));
     horas=($(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $5}'));

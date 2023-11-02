@@ -1,4 +1,4 @@
-# Easily restore snapshots on Virtuozzo Hybrid Infrastructure
+# Easily restore snapshots from Virtuozzo Hybrid Infrastructure
 
 ## Guide (execute just on VHI user nodes)
 

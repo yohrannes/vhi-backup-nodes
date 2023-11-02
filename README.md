@@ -4,7 +4,7 @@
 
 - **Download file**
 
-```wget https://raw.githubusercontent.com/yohrannes/vhi-backup-nodes/main/backup-manager.sh```
+  ```wget https://raw.githubusercontent.com/yohrannes/vhi-backup-nodes/main/backup-manager.sh```
 
 - **Show last seven snapshots**
 

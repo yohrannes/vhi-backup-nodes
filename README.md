@@ -1,19 +1,17 @@
-# Easily restore snapshots on Virtuozzo Hybrid Infrastructure
+# Restaure snapshots na Virtuozzo Hybrid Infrastructure
 
-## Guide (execute just on VHI user nodes)
+## Guia (execute somente nos usernodes)
 
-### **Download file**
-
-  ```wget https://raw.githubusercontent.com/yohrannes/vhi-backup-nodes/main/backup-manager.sh```
-
-### **Show last seven snapshots**
-
-  ```bash backup-manager.sh <CTID>```
-
-### **Restore snapshots**
-
-  ```bash backup-manager.sh <CTID> <BACKUPID [0 - 6]>```
-
-####  **Restore last container snapshot (example):**
-
-      bash backup-manager.sh 12345 6
+### **Faça download do script.sh**
+```
+wget https://raw.githubusercontent.com/yohrannes/vhi-backup-nodes/main/backup-manager.sh
+```
+### **Informar últimas sete snapshots**
+- Confira seu containerid(ctid) (não nodeid) e execute o comando
+```
+bash backup-manager.sh <CTID>
+```
+### **Restaure snapshots**
+```
+bash backup-manager.sh <CTID> <BACKUP OPTION [0 - 6]>
+```

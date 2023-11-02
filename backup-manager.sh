@@ -1,14 +1,13 @@
 #!/bin/bash
 checkbackups(){ 
     ctid=$1; restore=$2; 
-    
-    IFS=" " read -r -a uuid <<< "$( (prlctl list -a || vzlist -a) | grep "$ctid" | tail -n 1 | grep -o '{[^}]*}')"
+    uuid=$( (prlctl list -a || vzlist -a) | grep "$ctid" | tail -n 1 | grep -o '{[^}]*}' );
 
     if [[ "$uuid" == "" ]]; then echo -e '\e[91m\nSnapshot not found\n\e[0m'; sleep 4; exit 0; fi;
     
-    IFS=" " read -r -a backups <<< "$(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $2}')";
-    IFS=" " read -r -a datas <<< "$(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $4}')";
-    IFS=" " read -r -a horas <<< "$(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $5}')";
+    backups=($(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $2}'));
+    datas=($(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $4}'));
+    horas=($(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $5}'));
 
     echo -e '\nDisponible backups for CTID: \e[32m'"$ctid"'\e[0m UUID: \e[32m'"$uuid"'\e[0m\n';
 

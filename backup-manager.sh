@@ -2,7 +2,8 @@
 checkbackups(){ 
     ctid=$1; restore=$2; 
     
-    uuid=$( (prlctl list -a || vzlist -a) | grep "$ctid" | tail -n 1 | grep -o '{[^}]*}' );
+    IFS=" " read -r -a uuid <<< "$( (prlctl list -a || vzlist -a) | grep "$ctid" | tail -n 1 | grep -o '{[^}]*}')"
+
     if [[ "$uuid" == "" ]]; then echo -e '\e[91mSnapshot não encontrado\e[0m'; sleep 4; exit 0; fi;
     
     IFS=" " read -r -a backups <<< "$(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $2}')";

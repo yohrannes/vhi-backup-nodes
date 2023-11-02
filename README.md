@@ -13,5 +13,5 @@ bash backup-manager.sh <CTID>
 ```
 ### **Restaure snapshots**
 ```
-bash backup-manager.sh <CTID> <BACKUP OPTION [0 - 6]>
+bash backup-manager.sh <CTID> <OPÇÃO DO BACKUP [0 - 6]>
 ```

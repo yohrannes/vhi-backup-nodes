@@ -4,7 +4,7 @@ Este é um script desenvolvido para fazer a restauração de snapshots de uma fo
 
 Docs |
 :---:|
-[Virtuozzo PaaS Ops Docs](https://www.virtuozzo.com/application-platform-ops-docs/)|
+[Virtuozzo PaaS Ops Docs (Cluster Overview)](https://www.virtuozzo.com/application-platform-ops-docs/cluster-overview/)|
 [OpenVZ Docs](https://wiki.openvz.org/)|
 
 ---

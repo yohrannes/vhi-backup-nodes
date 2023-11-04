@@ -26,4 +26,4 @@ bash backup-manager.sh <CTID> <OPÇÃO DO BACKUP [0 - 6]>
 
 ## Agradecimentos
 
-Meus sinceros agradecimentos à **[SaveinCloud](https://saveincloud.com)** e toda equipe de suporte por fornecer recursos úteis e apoio durante o desenvolvimento deste projeto.
+Meus sinceros agradecimentos à **[SaveinCloud](https://saveincloud.com)** e toda equipe por fornecer recursos úteis e apoio durante o desenvolvimento deste projeto.

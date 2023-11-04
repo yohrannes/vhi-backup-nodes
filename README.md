@@ -15,7 +15,7 @@ wget https://raw.githubusercontent.com/yohrannes/vhi-backup-nodes/main-pt/backup
 ```
 bash backup-manager.sh <CTID>
 ```
-### **Restaure snapshots**
+### **Restaure**
 ```
 bash backup-manager.sh <CTID> <OPÇÃO DO BACKUP [0 - 6]>
 ```

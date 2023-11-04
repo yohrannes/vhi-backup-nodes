@@ -2,7 +2,11 @@
 
 This is a script developed to make restoring snapshots in an easier and more simplified way. For more information, check out the official documentation.
 
-https://www.virtuozzo.com/application-platform-ops-docs/
+Docs |
+:---:|
+[Virtuozzo PaaS Ops Docs](https://www.virtuozzo.com/application-platform-ops-docs/)|
+[OpenVZ Docs](https://wiki.openvz.org/)|
+
 ---
 ## Guide (execute just on VHI user nodes)
 

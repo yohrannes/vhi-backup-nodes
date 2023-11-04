@@ -2,7 +2,11 @@
 
 Este é um script desenvolvido para fazer a restauração de snapshots de uma forma mais fácil e simplificada para mais informações confira na documentação oficial.
 
-https://www.virtuozzo.com/application-platform-ops-docs/
+Docs |
+:---:|
+[Virtuozzo PaaS Ops Docs](https://www.virtuozzo.com/application-platform-ops-docs/)|
+[OpenVZ Docs](https://wiki.openvz.org/)|
+
 ---
 ## Guia (execute somente nos usernodes)
 

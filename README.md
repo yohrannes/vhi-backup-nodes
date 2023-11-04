@@ -4,11 +4,11 @@ This is a script developed to make restoring snapshots in an easier and more sim
 
 Docs |
 :---:|
-[Virtuozzo PaaS Ops Docs](https://www.virtuozzo.com/application-platform-ops-docs/)|
+[Virtuozzo PaaS Ops Docs (Cluster Overview)](https://www.virtuozzo.com/application-platform-ops-docs/cluster-overview/)|
 [OpenVZ Docs](https://wiki.openvz.org/)|
 
 ---
-## Guide (execute just on VHI user nodes)
+## Guide (execute just on VHI User Hosts)
 
 ### **Download script.sh**
 ```

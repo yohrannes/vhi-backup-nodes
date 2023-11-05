@@ -27,4 +27,4 @@ bash backup-manager.sh <CTID> <OPÇÃO DO BACKUP [0 - 6]>
 ## Agradecimentos
 
 - Meus sinceros agradecimentos à **[SaveinCloud](https://saveincloud.com)** e toda equipe por fornecer recursos úteis e apoio durante o desenvolvimento deste projeto.
-- Agradecimentos também a **[Virtuozzo](https://www.virtuozzo.com/all-supported-products/openvz/)** na disponibilidação do software livre.
+- Agradecimentos também a **[Virtuozzo](https://www.virtuozzo.com/all-supported-products/openvz/)** na disponibilização do software livre.

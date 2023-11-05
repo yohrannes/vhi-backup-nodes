@@ -1,6 +1,6 @@
 # Easily restore snapshots from Virtuozzo Hybrid Infrastructure
 
-This is a script developed to make restoring snapshots in an easier and more simplified way. For more information, check out the official documentation.
+This project uses OpenVZ container-based virtualization technology to perform automatic snapshot restoration. OpenVZ allows the creation and management of isolated containers, each operating as an independent server. This allows for high efficiency and container density per host machine. For more information, check the official documentation.
 
 Docs |
 :---:|
@@ -27,4 +27,5 @@ bash backup-manager.sh <CTID> <BACKUP OPTION [0 - 6]>
 
 ## Acknowledgements
 
-My sincere thanks to **[SaveinCloud](https://saveincloud.com)** and the entire support team for providing useful resources and support during the development of this project.
+- My sincere thanks to **[SaveinCloud](https://saveincloud.com)** and the entire support team for providing useful resources and support during the development of this project.
+- Thanks also to **[Virtuozzo](https://www.virtuozzo.com/all-supported-products/openvz/)** for making the free software available.

@@ -1,6 +1,6 @@
 #!/bin/bash
 checkbackups(){ 
-    ctid=$1; restore=$2; 
+    ctid=$1; restore=$2;
     uuid=$( (prlctl list -a || vzlist -a) | grep "$ctid" | tail -n 1 | grep -o '{[^}]*}' );
 
     if [[ "$uuid" == "" ]]; then echo -e '\e[91m\nSnapshot not found\n\e[0m'; sleep 4; exit 0; fi;

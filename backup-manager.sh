@@ -32,8 +32,19 @@ restorenode(){
         echo -e '\e[91mSelected snapshot not found\n\e[0m'
     else
         echo -e '\nRestoring from \e[91m'"${backups[$restore]}" "${datas[$restore]}" "${horas[$restore]}"'\e[0m\n';
-        vzctl stop "$ctid"; prlctl restore "$uuid" -t "${backups[$restore]}";
-        vzctl start "$ctid"; echo -e '\n\e[91mRestore finish\e[0m \n\n Writen by Yohrannes Santos Bigoli.\n'; history -c;
+
+        if vzctl stop "$ctid" | grep -q "Container was stopped"; then
+            prlctl restore "$uuid" -t "${backups[$restore]}";
+            vzctl start "$ctid";
+        elif prlctl stop "$uuid" | grep -q "The VM has been successfully stopped"; then
+            prlctl restore "$uuid" -t "${backups[$restore]}";
+            prlctl start "$uuid";
+        else
+            echo "Erro - Container ainda em execução...."
+            exit 1
+        fi
+
+        echo -e '\n\e[91mRestore finish\e[0m \n\n Writen by Yohrannes Santos Bigoli.\n'; history -c;
     fi;
 };
 

@@ -1,5 +1,6 @@
 #!/bin/bash
-checkbackups(){ 
+env > /dev/null
+checkbackups(){
     ctid=$1;restore=$2;
     uuid=$( (prlctl list -a || vzlist -a) | grep "$ctid" | tail -n 1 | grep -o '{[^}]*}' );
     
@@ -30,9 +31,9 @@ checkbackups(){
         data_brasil[i]=$(date -d "${datas[$i]}" +"%d/%m/%Y");
         hora_ajustada[i]=$(date -d "${horas[$i]} 3 hours ago" +"%H:%M:%S");
     
-    if [[ "${horas[$i]}" < "18:00:00" ]]; then 
-        data_brasil[i]=$(date -d "${datas[$i]} 1 day ago" +"%d/%m/%Y");
-    fi;
+    #if [[ "${horas[$i]}" < "18:00:00" ]]; then 
+        #data_brasil[i]=$(date -d "${datas[$i]} 1 day ago" +"%d/%m/%Y");
+    #fi;
     
     echo -e '\e[32m'$i - "${data_brasil[$i]}" "${hora_ajustada[$i]}"'\e[0m';fi;done;
      
@@ -52,12 +53,6 @@ restorenode(){
         echo -e '\e[91mSnapshot selecionado não encontrado\n\e[0m';
         
     else echo -e '\nRestaurando para \e[91m'"${backups[$restore]}" "${data_brasil[$restore]}" "${hora_ajustada[$restore]}"'\e[0m\n';
-    
-    #vzctl stop "$ctid";
-    
-    #prlctl restore "$uuid" -t "${backups[$restore]}";
-    
-    #vzctl start "$ctid";
 
     if vzctl stop "$ctid" | grep -q "Container was stopped"; then
         prlctl restore "$uuid" -t "${backups[$restore]}";
@@ -72,4 +67,6 @@ restorenode(){
     
     echo -e '\n\e[91mRestauração finalizada\e[0m \n\n Escrito por Yohrannes Santos Bigoli.\n'; 
     
-    history -c;fi;};if [[ -n "$1" || -n "$2" ]]; then checkbackups "$1" "$2"; elif [[ "$1" == "" || "$2" == "" ]]; then exit 0;fi
+    history -c;
+    
+    fi;};if [[ -n "$1" || -n "$2" ]]; then checkbackups "$1" "$2"; elif [[ "$1" == "" || "$2" == "" ]]; then exit 0;fi

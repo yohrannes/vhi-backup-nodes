@@ -23,19 +23,24 @@ checkbackups(){
     for ((i=0; i<=6; i++)); do
         if [[ ! "${backups[$i]}" == *-* ]]; then 
             backups[i]=""; backups[i]=""; 
-        fi; 
+        fi;
     done;
     
     for ((i=0;i<=6;i++)); do 
-    if [[ "${datas[$i]}" != "" ]]; then 
-        data_brasil[i]=$(date -d "${datas[$i]}" +"%d/%m/%Y");
-        hora_ajustada[i]=$(date -d "${horas[$i]} 3 hours ago" +"%H:%M:%S");
-    
-    #if [[ "${horas[$i]}" < "18:00:00" ]]; then 
-        #data_brasil[i]=$(date -d "${datas[$i]} 1 day ago" +"%d/%m/%Y");
-    #fi;
-    
-    echo -e '\e[32m'$i - "${data_brasil[$i]}" "${hora_ajustada[$i]}"'\e[0m';fi;done;
+        if [[ "${datas[$i]}" != "" ]]; then
+
+            hora_ajustada[i]=$(date -d "${horas[$i]} 3 hours ago" +"%H:%M:%S");
+
+            if [[ "${horas[$i]}" < "03:00:00" ]]; then
+                data_brasil[i]=$(date -d "${datas[$i]} 1 day ago" +"%d/%m/%Y");
+            else
+                data_brasil[i]=$(date -d "${datas[$i]}" +"%d/%m/%Y");
+            fi;
+            
+            echo -e '\e[32m'$i - "${data_brasil[$i]}" "${hora_ajustada[$i]}"'\e[0m';
+            
+        fi;
+    done;
      
     if [[ "$2" == "" ]]; then 
         exit 0;

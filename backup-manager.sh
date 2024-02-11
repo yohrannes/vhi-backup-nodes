@@ -37,16 +37,25 @@ checkbackups(){
                 data_brasil[i]=$(date -d "${datas[$i]}" +"%d/%m/%Y");
             fi;
             
-            echo -e '\e[32m'$i - "${data_brasil[$i]}" "${hora_ajustada[$i]}"'\e[0m';
+            if [[ "$2" == "--clientmsg" ]]; then
+                continue;
+            else
+                echo -e '\e[32m'$i - "${data_brasil[$i]}" "${hora_ajustada[$i]}"'\e[0m';
+            fi;
             
         fi;
     done;
      
     if [[ "$2" == "" ]]; then 
         exit 0;
-    else 
-        restorenode "$2";
+    else
+        if [[ "$2" == "--clientmsg" ]]; then
+            infomsg "$2";
+        else
+            restorenode "$2";
+        fi;
     fi;
+
 };
      
      
@@ -68,10 +77,26 @@ restorenode(){
     else
         echo "Erro - Container ainda em execução...."
         exit 1
-    fi
-    
+    fi;
     echo -e '\n\e[91mRestauração finalizada\e[0m \n\n Escrito por Yohrannes Santos Bigoli.\n'; 
-    
     history -c;
-    
-    fi;};if [[ -n "$1" || -n "$2" ]]; then checkbackups "$1" "$2"; elif [[ "$1" == "" || "$2" == "" ]]; then exit 0;fi
+    fi;
+
+};
+
+infomsg(){
+    read -p "Informe o nome do cliente:" clientname;
+    echo
+    echo "Olá  $clientname, verificamos com nosso time financeiro que houve a compensação do pagamento, dessa forma daremos início a restauração. Em nosso sistema temos os últimos SNAPSHOTS realizados:"
+    for ((i=0;i<=6;i++)); do 
+        echo -e '\e[32m'"${data_brasil[$i]}" "${hora_ajustada[$i]}"'\e[0m';
+    done;
+    echo "Nos informe a data que deseja para que possamos iniciar o processo."
+    echo
+}
+
+if [[ -n "$1" || -n "$2" ]]; then
+    checkbackups "$1" "$2" "$3";
+elif [[ "$1" == "" || "$2" == "" ]]; then
+exit 0;
+fi

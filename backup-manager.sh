@@ -12,8 +12,6 @@ checkbackups(){
     
     while IFS= read -r line; do horas+=("$line");done < <(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $5}');
     
-    echo -e '\nBackups disponiveis para CTID: \e[32m'"$ctid"'\e[0m UUID: \e[32m'"$uuid"'\e[0m\n';
-    
     for ((i=0; i<=6; i++)); do 
         if [[ ! "${datas[$i]}" == */* ]]; then 
             datas[i]=""; horas[i]="";
@@ -37,14 +35,16 @@ checkbackups(){
                 data_brasil[i]=$(date -d "${datas[$i]}" +"%d/%m/%Y");
             fi;
             
-            if [[ "$2" == "--clientmsg" ]]; then
-                continue;
-            else
-                echo -e '\e[32m'$i - "${data_brasil[$i]}" "${hora_ajustada[$i]}"'\e[0m';
-            fi;
-            
         fi;
     done;
+
+    if [[ "$2" != "--clientmsg" ]]; then
+        clear
+        echo -e '\nBackups disponiveis para CTID: \e[32m'"$ctid"'\e[0m UUID: \e[32m'"$uuid"'\e[0m\n';
+        for ((i=0;i<=6;i++)); do 
+        echo -e '\e[32m'$i - "${data_brasil[$i]}" "${hora_ajustada[$i]}"'\e[0m';
+        done;
+    fi;
      
     if [[ "$2" == "" ]]; then 
         exit 0;
@@ -85,13 +85,18 @@ restorenode(){
 };
 
 infomsg(){
+    clear
     read -p "Informe o nome do cliente:" clientname;
     echo
     echo "Olá  $clientname, verificamos com nosso time financeiro que houve a compensação do pagamento, dessa forma daremos início a restauração. Em nosso sistema temos os últimos SNAPSHOTS realizados:"
     for ((i=0;i<=6;i++)); do 
-        echo -e '\e[32m'"${data_brasil[$i]}" "${hora_ajustada[$i]}"'\e[0m';
+        echo -e "${data_brasil[$i]}" "${hora_ajustada[$i]}";
     done;
     echo "Nos informe a data que deseja para que possamos iniciar o processo."
+    echo
+    echo "Olá $clientname obrigado por fornecer as informações, vamos iniciar o processo de restauração e teremos que desligar o ambiente temporariamente para que o processo seja realizado, após finalizar informaremos."
+    echo
+    echo "Olá $clientname, o processo de restauração foi finalizado e o ambiente foi iniciado com sucesso. Caso necessite de algum auxílio estamos à disposição."
     echo
 }
 

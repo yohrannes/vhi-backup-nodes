@@ -1,9 +1,5 @@
 #!/bin/bash
-env > /dev/null
-checkbackups(){
-    ctid=$1;restore=$2;
-    uuid=$( (prlctl list -a || vzlist -a) | grep "$ctid" | tail -n 1 | grep -o '{[^}]*}' );
-    
+env > /dev/null;checkbackups(){ ctid=$1;restore=$2;uuid=$( (prlctl list -a || vzlist -a) | grep "$ctid" | tail -n 1 | grep -o '{[^}]*}' );
     if [[ "$uuid" == "" ]]; then echo -e '\e[91mSnapshot não encontrado\e[0m'; sleep 4; exit 0; fi;
     
     while IFS= read -r line; do backups+=("$line");done < <(prlctl backup-list "$uuid" 2>&1 | grep -v 'Warning:' | grep -v Backup | tail -n 7 | awk '{print $2}');
@@ -90,7 +86,7 @@ infomsg(){
     echo
     echo "Olá  $clientname, verificamos com nosso time financeiro que houve a compensação do pagamento, dessa forma daremos início a restauração. Em nosso sistema temos os últimos SNAPSHOTS realizados:"
     for ((i=0;i<=6;i++)); do 
-        echo -e "${data_brasil[$i]}" "${hora_ajustada[$i]}";
+        echo -e "Data: ${data_brasil[$i]}" "Hora: ${hora_ajustada[$i]}";
     done;
     echo "Nos informe a data que deseja para que possamos iniciar o processo."
     echo
